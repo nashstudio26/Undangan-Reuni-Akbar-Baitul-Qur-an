@@ -360,51 +360,57 @@
         </section>
 
         <!-- Event Details Section -->
-        <section class="py-12 px-4 bg-white/50 relative">
-            <div class="max-w-4xl mx-auto fade-in-up">
-                <h2 class="font-serif text-2xl md:text-3xl text-center text-brand-dark mb-8">
+        <section class="py-10 px-4 bg-white/50 relative">
+            <div class="max-w-3xl mx-auto fade-in-up">
+                <h2 class="font-serif text-2xl md:text-3xl text-center text-brand-dark mb-6">
                     <span class="text-brand-gold text-xs block tracking-[0.2em] uppercase mb-1">Informasi</span>
                     Waktu & Tempat
                 </h2>
 
-                <div class="grid md:grid-cols-2 gap-6 relative">
-                    <!-- Vertical divider for desktop -->
-                    <div class="hidden md:block absolute top-8 bottom-8 left-1/2 w-px bg-brand-gold/30 transform -translate-x-1/2"></div>
-
-                    <!-- Panel Time -->
-                    <div class="bg-brand-light p-6 rounded-xl border border-brand-gold/20 shadow-sm text-center group hover:-translate-y-1 transition-transform duration-300">
-                        <div class="w-12 h-12 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                            <i class="far fa-calendar-alt text-xl"></i>
-                        </div>
-                        <h3 class="font-serif text-xl text-brand-dark mb-1">Hari & Tanggal</h3>
-                        <p class="font-sans text-base font-medium text-brand-sage mb-4">Sabtu, 06 Desember 2026</p>
-                        
-                        <div class="w-12 h-12 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                            <i class="far fa-clock text-xl"></i>
-                        </div>
-                        <h3 class="font-serif text-xl text-brand-dark mb-1">Waktu</h3>
-                        <p class="font-sans text-base font-medium text-brand-sage">08.00 – Selesai</p>
-                    </div>
-
-                    <!-- Panel Location -->
-                    <div class="bg-brand-light p-6 rounded-xl border border-brand-gold/20 shadow-sm text-center group hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
+                <div class="max-w-xl mx-auto bg-white p-4 md:p-8 rounded-2xl border border-brand-gold/30 shadow-[0_4px_20px_rgba(197,160,89,0.05)] relative overflow-hidden">
+                    <!-- Elegant Decoration -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-bl-full pointer-events-none"></div>
+                    
+                    <ul class="relative z-10 flex flex-col">
+                        <!-- Tanggal -->
+                        <li class="flex items-center gap-4 py-3 md:py-4 border-b border-brand-gold/10 hover:bg-brand-gold/5 transition-colors rounded-t-xl px-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center shrink-0 shadow-sm border border-brand-gold/20">
+                                <i class="far fa-calendar-alt"></i>
                             </div>
-                            <h3 class="font-serif text-xl text-brand-dark mb-1">Tempat</h3>
-                            <p class="font-sans text-base font-medium text-brand-sage mb-3">Pondok Pesantren<br>Baitul Qur'an Putri Slogohimo</p>
-                            
-                            <p class="font-sans text-xs text-brand-dark/70 mb-6 leading-relaxed px-2">
-                                Desa Made, Kecamatan Slogohimo, Kabupaten Wonogiri
-                            </p>
-                        </div>
+                            <div>
+                                <h3 class="font-sans text-[10px] text-brand-dark/50 uppercase tracking-widest mb-0.5">Hari & Tanggal</h3>
+                                <p class="font-serif font-medium text-brand-dark text-[15px] md:text-base">Sabtu, 06 Desember 2026</p>
+                            </div>
+                        </li>
+                        
+                        <!-- Waktu -->
+                        <li class="flex items-center gap-4 py-3 md:py-4 border-b border-brand-gold/10 hover:bg-brand-gold/5 transition-colors px-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center shrink-0 shadow-sm border border-brand-gold/20">
+                                <i class="far fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-sans text-[10px] text-brand-dark/50 uppercase tracking-widest mb-0.5">Waktu</h3>
+                                <p class="font-serif font-medium text-brand-dark text-[15px] md:text-base">08.00 WIB – Selesai</p>
+                            </div>
+                        </li>
 
-                        <!-- Map Button -->
-                        <a href="https://www.google.com/maps/search/?api=1&query=Pondok+Pesantren+Baitul+Qur'an+Putri+Slogohimo,+Wonogiri" target="_blank" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-brand-dark text-brand-gold border border-brand-gold rounded-full font-sans text-xs font-semibold hover:bg-brand-gold hover:text-brand-dark transition-colors duration-300 shadow-sm">
-                            <i class="fas fa-map"></i> Lihat Lokasi
-                        </a>
-                    </div>
+                        <!-- Tempat -->
+                        <li class="flex items-start gap-4 pt-4 md:pt-5 pb-1 px-2">
+                            <div class="w-10 h-10 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center shrink-0 shadow-sm border border-brand-gold/20 mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-sans text-[10px] text-brand-dark/50 uppercase tracking-widest mb-0.5">Tempat</h3>
+                                <p class="font-serif font-medium text-brand-dark text-[15px] md:text-base mb-1">Pondok Pesantren Baitul Qur'an Putri</p>
+                                <p class="font-sans text-xs text-brand-dark/70 leading-relaxed mb-4">
+                                    Desa Made, Kec. Slogohimo, Kab. Wonogiri
+                                </p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Pondok+Pesantren+Baitul+Qur'an+Putri+Slogohimo,+Wonogiri" target="_blank" class="inline-flex items-center justify-center gap-2 w-full py-2.5 bg-brand-light text-brand-dark border border-brand-gold/50 rounded-full font-sans text-xs font-semibold hover:bg-brand-dark hover:text-brand-gold transition-all duration-300 shadow-sm">
+                                    <i class="fas fa-map"></i> Lihat Peta Lokasi
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -478,6 +484,52 @@
                             <td class="py-2.5 px-4 text-brand-dark">Temu kangen, ramah tamah dan diskusi</td>
                         </tr>
                     </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Administration Section -->
+        <section class="py-12 px-4 relative">
+            <div class="max-w-3xl mx-auto fade-in-scale">
+                <h2 class="font-serif text-2xl md:text-3xl text-center text-brand-dark mb-8">
+                    <span class="text-brand-gold text-xs block tracking-[0.2em] uppercase mb-1">Registrasi</span>
+                    Administrasi & Konfirmasi
+                </h2>
+                
+                <div class="bg-brand-light p-6 md:p-10 rounded-xl border border-brand-gold/30 shadow-md text-center relative overflow-hidden">
+                    <!-- Background ornament -->
+                    <div class="absolute -right-6 -bottom-6 text-brand-gold/10 text-9xl pointer-events-none">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    
+                    <p class="font-sans text-brand-dark/90 mb-6 leading-relaxed relative z-10 text-sm md:text-base">
+                        Bagi alumni yang berkenan hadir, mohon untuk melakukan pembayaran administrasi sebesar:
+                    </p>
+                    
+                    <div class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-6 relative z-10">
+                        Rp 75.000
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg border border-brand-gold/20 mb-8 max-w-md mx-auto relative z-10 shadow-sm">
+                        <p class="font-sans text-sm text-brand-sage font-semibold uppercase mb-1">Bank BRI</p>
+                        <p class="font-serif text-2xl md:text-3xl text-brand-dark tracking-wider mb-2 font-medium">
+                            696601021180534
+                        </p>
+                        <p class="font-sans text-sm text-brand-dark/70 mb-5 font-medium">a.n. Sholihati Eka Nurjanah</p>
+                        
+                        <button onclick="copyRekening()" id="btn-copy" class="inline-flex items-center justify-center gap-2 py-2 px-6 bg-brand-light text-brand-dark border border-brand-gold/50 rounded-full font-sans text-xs font-semibold hover:bg-brand-gold hover:text-brand-dark transition-all duration-300">
+                            <i class="far fa-copy"></i> <span>Salin No. Rekening</span>
+                        </button>
+                    </div>
+                    
+                    <p class="font-sans text-brand-dark/80 mb-6 leading-relaxed text-sm md:text-base relative z-10">
+                        Setelah melakukan pembayaran, mohon konfirmasi melalui WhatsApp dengan melampirkan bukti transfer.
+                    </p>
+                    
+                    <!-- Pre-filled WA message format for confirmation -->
+                    <a href="https://wa.me/6283897889350?text=Assalamu'alaikum%20warahmatullahi%20wabarakatuh.%0ASaya%20telah%20melakukan%20pembayaran%20administrasi%20untuk%20kehadiran%20di%20Reuni%20Akbar%20Alumni%20Pondok%20Pesantren%20Baitul%20Qur'an%20Slogohimo.%0A%0ABerikut%20saya%20lampirkan%20bukti%20pembayarannya%3A" target="_blank" class="inline-flex items-center justify-center gap-2 w-full md:w-auto py-3 px-8 bg-[#25D366] text-white rounded-full font-sans text-sm font-semibold hover:bg-[#128C7E] transition-colors duration-300 shadow-md relative z-10 transform hover:-translate-y-1">
+                        <i class="fab fa-whatsapp text-lg"></i> Konfirmasi via WhatsApp
+                    </a>
                 </div>
             </div>
         </section>
@@ -679,7 +731,53 @@
                 behavior: 'smooth'
             });
         }
+
+        // --- 4. Copy to Clipboard Logic ---
+        function copyRekening() {
+            const rekNumber = "696601021180534";
+            
+            // Try modern clipboard API first
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(rekNumber).then(showCopySuccess);
+            } else {
+                // Fallback for older browsers / webview
+                let textArea = document.createElement("textarea");
+                textArea.value = rekNumber;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                textArea.style.top = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showCopySuccess();
+                } catch (err) {
+                    console.error('Gagal menyalin:', err);
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showCopySuccess() {
+            const btn = document.getElementById('btn-copy');
+            const span = btn.querySelector('span');
+            const icon = btn.querySelector('i');
+            
+            // Visual feedback
+            span.innerText = "Berhasil Disalin!";
+            icon.className = "fas fa-check";
+            btn.classList.add("bg-brand-gold", "text-brand-dark");
+            btn.classList.remove("bg-brand-light");
+            
+            // Revert back after 3 seconds
+            setTimeout(() => {
+                span.innerText = "Salin No. Rekening";
+                icon.className = "far fa-copy";
+                btn.classList.remove("bg-brand-gold", "text-brand-dark");
+                btn.classList.add("bg-brand-light");
+            }, 3000);
+        }
     </script>
 </body>
 </html>
-```
