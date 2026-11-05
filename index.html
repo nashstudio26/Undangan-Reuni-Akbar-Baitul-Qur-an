@@ -1,0 +1,686 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Reuni Akbar - PP Baitul Qur'an Slogohimo</title>
+    <meta name="description" content="Undangan Reuni Akbar Alumni Pondok Pesantren Baitul Qur'an Slogohimo Angkatan 2022–2025">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#132a18', // Dark Green
+                            light: '#f9f6f0', // Ivory/Cream
+                            sage: '#8ba888', // Sage Green
+                            gold: '#c5a059', // Muted Gold
+                            goldlight: '#dfc082',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            background-color: #f9f6f0;
+            color: #132a18;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f9f6f0; }
+        ::-webkit-scrollbar-thumb { background: #c5a059; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8ba888; }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #c5a059;
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* Background Pattern */
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c5a059' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Opening Screen & Cover Card */
+        #opening-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #132a18;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease-in-out;
+            overflow: hidden;
+        }
+
+        #cover-card {
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-in-out;
+        }
+
+        /* Ornaments */
+        .border-ornament {
+            border: 2px solid #c5a059;
+            padding: 4px;
+            position: relative;
+        }
+        .border-ornament::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border: 1px solid rgba(197, 160, 89, 0.5);
+        }
+
+        .corner-tl, .corner-tr, .corner-bl, .corner-br {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23c5a059' d='M0 0h100v10H10V100H0V0zm10 10h80v10H20v70H10V10z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        .corner-tl { top: -10px; left: -10px; }
+        .corner-tr { top: -10px; right: -10px; transform: rotate(90deg); }
+        .corner-bl { bottom: -10px; left: -10px; transform: rotate(-90deg); }
+        .corner-br { bottom: -10px; right: -10px; transform: rotate(180deg); }
+
+        /* Cover Corner Ornaments */
+        .cover-corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23c5a059' fill-opacity='0.6' d='M0 0h100v2H2v98H0V0zm10 10h80v2H12v78h-2V10z'/%3E%3C/svg%3E");
+            background-size: cover;
+        }
+        .cover-tl { top: 10px; left: 10px; }
+        .cover-tr { top: 10px; right: 10px; transform: rotate(90deg); }
+        .cover-bl { bottom: 10px; left: 10px; transform: rotate(-90deg); }
+        .cover-br { bottom: 10px; right: 10px; transform: rotate(180deg); }
+
+        /* Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-scale {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .spin-slow {
+            animation: spin 15s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Floating buttons */
+        .floating-btn {
+            background: rgba(19, 42, 24, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid #c5a059;
+            color: #c5a059;
+            transition: all 0.3s;
+        }
+        .floating-btn:hover {
+            background: #c5a059;
+            color: #132a18;
+        }
+        
+        /* Main Layout Hidden Initially */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+
+        /* Section Borders */
+        .section-divider {
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L45 5 L40 10 L45 15 Z M50 10 L55 5 L60 10 L55 15 Z' fill='none' stroke='%23c5a059' stroke-width='1'/%3E%3Cline x1='0' y1='10' x2='40' y2='10' stroke='%23c5a059' stroke-width='1'/%3E%3Cline x1='60' y1='10' x2='100' y2='10' stroke='%23c5a059' stroke-width='1'/%3E%3C/svg%3E");
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Floating Controls -->
+    <div class="fixed bottom-4 right-4 z-40 flex flex-col gap-2">
+        <button id="back-to-top" class="floating-btn w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 translate-y-10" onclick="scrollToTop()" aria-label="Back to Top">
+            <i class="fas fa-chevron-up text-sm"></i>
+        </button>
+    </div>
+
+    <!-- Opening Screen (Cover Card) -->
+    <div id="opening-screen">
+        <!-- Background Ambient -->
+        <div class="absolute inset-0 opacity-20 bg-pattern pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#132a18]/50 to-[#0f2213] pointer-events-none"></div>
+        
+        <div id="cover-card" class="relative z-10 w-[90%] max-w-sm bg-brand-light p-8 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-2 border-brand-gold/50 flex flex-col items-center justify-center text-center overflow-hidden min-h-[75vh]">
+            
+            <!-- Ornaments inside cover -->
+            <div class="cover-corner cover-tl pointer-events-none"></div>
+            <div class="cover-corner cover-tr pointer-events-none"></div>
+            <div class="cover-corner cover-bl pointer-events-none"></div>
+            <div class="cover-corner cover-br pointer-events-none"></div>
+
+            <!-- Content -->
+            <div class="relative z-20 flex flex-col items-center justify-center w-full h-full">
+                
+                <!-- Logo -->
+                <div class="w-28 h-28 mb-6 relative flex items-center justify-center drop-shadow-lg">
+                    <!-- Menggunakan lh3.googleusercontent untuk direct link yang lebih handal, dengan fallback uc?export -->
+                    <img src="https://lh3.googleusercontent.com/d/1LALXms6q_cctYtN_nolPCAmz6bXrRikP" alt="Logo PP Baitul Qur'an" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://drive.google.com/uc?export=view&id=1LALXms6q_cctYtN_nolPCAmz6bXrRikP';">
+                </div>
+
+                <p class="font-sans text-brand-sage font-bold uppercase tracking-[0.25em] text-[10px] mb-2">Undangan Resmi</p>
+                <h1 class="font-serif text-3xl text-brand-dark font-bold mb-1">Reuni Akbar</h1>
+                <p class="font-serif italic text-brand-gold text-lg mb-5">Angkatan 1–5</p>
+
+                <div class="w-12 h-[2px] bg-brand-gold/60 mx-auto mb-5"></div>
+
+                <div class="bg-brand-dark/5 px-6 py-4 rounded-xl border border-brand-gold/20 mb-6 w-full">
+                    <p class="font-sans text-brand-dark/80 text-[11px] mb-1 uppercase tracking-wider">Kepada Yth.</p>
+                    <p class="font-serif text-brand-dark font-bold text-[15px] leading-snug mb-3">Alumni PP. Baitul Qur'an<br>Slogohimo</p>
+                    <p class="font-sans text-brand-dark/70 text-[11px] italic leading-relaxed">
+                        "Semoga Allah senantiasa melimpahkan rahmat dan keberkahan-Nya kepada Antum sekalian."
+                    </p>
+                </div>
+
+                <button id="btn-open" class="group relative px-8 py-3 bg-brand-dark text-brand-gold rounded-full font-sans text-[13px] font-bold tracking-wider uppercase overflow-hidden shadow-[0_4px_15px_rgba(197,160,89,0.3)] transition-all duration-300 hover:scale-105 hover:shadow-[0_6px_25px_rgba(197,160,89,0.5)] cursor-pointer animate-bounce hover:animate-none">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        <i class="fas fa-envelope-open text-brand-gold"></i> Buka Undangan
+                    </span>
+                    <div class="absolute inset-0 bg-brand-gold scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-out z-0"></div>
+                    <span class="absolute inset-0 z-10 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-brand-dark">
+                        <i class="fas fa-envelope-open text-brand-dark"></i> Buka Undangan
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="bg-pattern min-h-screen pb-10">
+        
+        <!-- Hero Section -->
+        <header class="relative flex flex-col items-center justify-center px-4 py-20 text-center overflow-hidden min-h-[95vh]">
+            <!-- Elegant Islamic Arch Frame -->
+            <div class="absolute top-8 bottom-8 left-4 right-4 md:left-10 md:right-10 border-[3px] border-brand-gold/30 rounded-t-full rounded-b-3xl opacity-60 pointer-events-none"></div>
+            <div class="absolute top-10 bottom-10 left-6 right-6 md:left-12 md:right-12 border border-brand-gold/20 rounded-t-full rounded-b-3xl opacity-60 pointer-events-none"></div>
+
+            <div class="z-10 max-w-2xl mx-auto w-full fade-in-scale mt-12">
+                
+                <!-- Logo Section -->
+                <div class="relative w-32 h-32 mx-auto mb-8 flex items-center justify-center">
+                    <!-- Glowing effect -->
+                    <div class="absolute inset-0 bg-brand-gold/10 rounded-full blur-xl"></div>
+                    <svg class="absolute inset-0 w-full h-full spin-slow text-brand-gold opacity-50 scale-[1.3]" viewBox="0 0 100 100" fill="currentColor">
+                        <path d="M50 0 L55 40 L95 50 L55 60 L50 100 L45 60 L5 50 L45 40 Z" />
+                        <path d="M15 15 L40 40 L85 15 L60 40 L85 85 L60 60 L15 85 L40 60 Z" opacity="0.3"/>
+                    </svg>
+                    <!-- Actual Logo replacing the icon -->
+                    <img src="https://lh3.googleusercontent.com/d/1LALXms6q_cctYtN_nolPCAmz6bXrRikP" alt="Logo PP Baitul Qur'an" class="relative z-10 w-28 h-28 object-contain drop-shadow-xl" onerror="this.onerror=null; this.src='https://drive.google.com/uc?export=view&id=1LALXms6q_cctYtN_nolPCAmz6bXrRikP';">
+                </div>
+
+                <!-- Content Card inside Hero -->
+                <div class="bg-brand-light/70 backdrop-blur-md rounded-3xl p-8 shadow-xl border border-brand-gold/30 relative">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-brand-gold rounded-b-full"></div>
+                    
+                    <p class="font-sans text-brand-sage font-bold uppercase tracking-[0.2em] text-xs mb-4 leading-relaxed">
+                        Pondok Pesantren<br>Baitul Qur'an Slogohimo
+                    </p>
+                    
+                    <h1 class="font-serif text-5xl md:text-6xl font-bold text-brand-dark mb-4 leading-tight drop-shadow-sm">
+                        Reuni Akbar
+                    </h1>
+                    
+                    <div class="flex items-center justify-center gap-4 my-6">
+                        <div class="h-px bg-gradient-to-r from-transparent to-brand-gold w-12 md:w-20"></div>
+                        <span class="font-serif italic text-brand-gold text-lg md:text-xl font-medium">Alumni Angkatan 1–5</span>
+                        <div class="h-px bg-gradient-to-l from-transparent to-brand-gold w-12 md:w-20"></div>
+                    </div>
+                    
+                    <div class="inline-block bg-brand-dark text-brand-gold py-3 px-8 rounded-full shadow-lg border border-brand-gold/50 mb-6 transform transition-transform hover:scale-105">
+                        <p class="font-sans tracking-[0.15em] font-semibold text-sm">SABTU, 06 DESEMBER 2026</p>
+                    </div>
+
+                    <p class="font-sans text-sm text-brand-dark/80 max-w-md mx-auto leading-relaxed italic">
+                        "Kami mengundang dan memohon kehadiran teman-teman alumni untuk hadir, bersilaturahmi, dan meramaikan acara ini."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-8 animate-bounce">
+                <i class="fas fa-chevron-down text-brand-gold text-2xl drop-shadow-md"></i>
+            </div>
+        </header>
+
+        <!-- Greeting Section -->
+        <section class="py-12 px-4 bg-brand-dark text-brand-light relative shadow-inner">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 20.5V18H0v-2h20v-2.5L22.5 16 25 13.5V0h2v13.5L29.5 16 32 13.5V0h2v13.5L36.5 16 39 13.5V0h1v14.5l-3 3v22h-2v-22l-3-3v22h-2v-22l-3-3v22h-2v-22l-2.5-2.5L20 20.5z\' fill=\'%23c5a059\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')]"></div>
+            
+            <div class="max-w-3xl mx-auto text-center relative z-10 fade-in-up">
+                <h2 class="font-arabic text-3xl md:text-4xl mb-4 text-brand-gold leading-loose">
+                    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                </h2>
+                <p class="font-serif italic text-lg md:text-xl mb-6">
+                    Assalamu'alaikum Warahmatullahi Wabarakatuh.
+                </p>
+
+                <div class="section-divider opacity-50 my-6"></div>
+
+                <div class="bg-brand-light/5 p-5 md:p-8 rounded-lg border border-brand-gold/30 backdrop-blur-sm text-sm md:text-base">
+                    <p class="font-sans text-brand-light/90 leading-relaxed mb-4 text-justify md:text-center">
+                        <strong>Alhamdulillahirobbil’alamiin,</strong> segala puji bagi Allah subhanahu wa ta’ala karena dengan taufik dan hidayah-Nya, kita semua masih diberikan nikmat iman dan islam. Sholawat serta salam semoga tetap tercurahkan kepada junjungan kita Nabi Muhammad shallallahu alaihi wa sallam.
+                    </p>
+                    
+                    <p class="font-sans text-brand-light/90 leading-relaxed mb-4 text-justify md:text-center">
+                        Kepada Yth.<br>
+                        <strong class="text-brand-gold text-base font-serif block mt-1">Alumni Pondok Pesantren Baitul Qur'an Slogohimo Angkatan 1–5</strong>
+                    </p>
+
+                    <p class="font-sans text-brand-light/90 leading-relaxed text-justify md:text-center">
+                        Sehubungan akan diadakannya kegiatan Reuni Alumni Pondok Pesantren Baitul Qur’an Slogohimo, kami selaku panitia mengundang dan memohon kehadiran alumni untuk berkenan hadir pada kegiatan tersebut.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="py-12 px-4">
+            <div class="max-w-3xl mx-auto fade-in-scale">
+                <div class="border-ornament bg-white p-6 md:p-10 text-center shadow-sm relative">
+                    <div class="corner-tl"></div>
+                    <div class="corner-tr"></div>
+                    <div class="corner-bl"></div>
+                    <div class="corner-br"></div>
+                    
+                    <i class="fas fa-quote-right text-2xl text-brand-gold/30 mb-4"></i>
+                    
+                    <p class="font-arabic text-xl md:text-2xl text-brand-dark mb-4 leading-loose">
+                        مَنْ سَرَّهُ أَنْ يُبْسَطَ لَهُ فِي رِزْقِهِ أَوْ يُنْسَأَ لَهُ فِي أَثَرِهِ فَلْيَصِلْ رَحِمَهُ
+                    </p>
+                    
+                    <p class="font-sans text-sm text-brand-dark/80 italic mb-3 leading-relaxed max-w-xl mx-auto">
+                        "Barangsiapa yang senang diluaskan rezekinya dan dipanjangkan umurnya, maka hendaklah ia menyambung tali silaturahmi."
+                    </p>
+                    
+                    <div class="w-10 h-px bg-brand-gold mx-auto mb-2"></div>
+                    <p class="font-serif text-brand-dark font-semibold text-xs">
+                        HR. Bukhari no. 5985 dan Muslim no. 2557
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Details Section -->
+        <section class="py-12 px-4 bg-white/50 relative">
+            <div class="max-w-4xl mx-auto fade-in-up">
+                <h2 class="font-serif text-2xl md:text-3xl text-center text-brand-dark mb-8">
+                    <span class="text-brand-gold text-xs block tracking-[0.2em] uppercase mb-1">Informasi</span>
+                    Waktu & Tempat
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-6 relative">
+                    <!-- Vertical divider for desktop -->
+                    <div class="hidden md:block absolute top-8 bottom-8 left-1/2 w-px bg-brand-gold/30 transform -translate-x-1/2"></div>
+
+                    <!-- Panel Time -->
+                    <div class="bg-brand-light p-6 rounded-xl border border-brand-gold/20 shadow-sm text-center group hover:-translate-y-1 transition-transform duration-300">
+                        <div class="w-12 h-12 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i class="far fa-calendar-alt text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl text-brand-dark mb-1">Hari & Tanggal</h3>
+                        <p class="font-sans text-base font-medium text-brand-sage mb-4">Sabtu, 06 Desember 2026</p>
+                        
+                        <div class="w-12 h-12 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                            <i class="far fa-clock text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-xl text-brand-dark mb-1">Waktu</h3>
+                        <p class="font-sans text-base font-medium text-brand-sage">08.00 – Selesai</p>
+                    </div>
+
+                    <!-- Panel Location -->
+                    <div class="bg-brand-light p-6 rounded-xl border border-brand-gold/20 shadow-sm text-center group hover:-translate-y-1 transition-transform duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-full bg-brand-dark text-brand-gold flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-xl text-brand-dark mb-1">Tempat</h3>
+                            <p class="font-sans text-base font-medium text-brand-sage mb-3">Pondok Pesantren<br>Baitul Qur'an Putri Slogohimo</p>
+                            
+                            <p class="font-sans text-xs text-brand-dark/70 mb-6 leading-relaxed px-2">
+                                Desa Made, Kecamatan Slogohimo, Kabupaten Wonogiri
+                            </p>
+                        </div>
+
+                        <!-- Map Button -->
+                        <a href="https://www.google.com/maps/search/?api=1&query=Pondok+Pesantren+Baitul+Qur'an+Putri+Slogohimo,+Wonogiri" target="_blank" class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-5 bg-brand-dark text-brand-gold border border-brand-gold rounded-full font-sans text-xs font-semibold hover:bg-brand-gold hover:text-brand-dark transition-colors duration-300 shadow-sm">
+                            <i class="fas fa-map"></i> Lihat Lokasi
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rundown Section -->
+        <section class="py-12 px-4 relative">
+            <div class="max-w-3xl mx-auto fade-in-up">
+                <h2 class="font-serif text-2xl md:text-3xl text-center text-brand-dark mb-8">
+                    <span class="text-brand-gold text-xs block tracking-[0.2em] uppercase mb-1">Agenda</span>
+                    Rundown Acara
+                </h2>
+                
+                <div class="bg-white rounded-xl border border-brand-gold/20 shadow-sm overflow-hidden">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-brand-dark text-brand-gold font-serif">
+                                <th class="py-3 px-4 w-1/3 border-b border-brand-gold/20">Waktu</th>
+                                <th class="py-3 px-4 border-b border-brand-gold/20">Kegiatan</th>
+                            </tr>
+                        </thead>
+                        <tr class="bg-brand-light/30 border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">07.30 - 08.00</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Kedatangan dan registrasi</td>
+                        </tr>
+                        <tr class="bg-white border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">08.00 - 08.10</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Pembukaan</td>
+                        </tr>
+                        <tr class="bg-brand-light/30 border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">08.10 - 08.20</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Tilawatil Qur’an</td>
+                        </tr>
+                        <tr class="bg-white border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">08.20 - 08.35</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Prakata ketua Yayasan Ruhul Jadid</td>
+                        </tr>
+                        <tr class="bg-brand-light/30 border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">08.35 - 09.30</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Sarasehan bersama Ustadz Ali Maskun</td>
+                        </tr>
+                        <tr class="bg-white border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">09.30 - 10.00</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Pemutaran Dokumentasi</td>
+                        </tr>
+                        <tr class="bg-brand-light/30 border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">10.00 - 10.35</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Kesan dan Pesan (Perwakilan Angkatan)</td>
+                        </tr>
+                        <tr class="bg-white border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">10.35 - 10.50</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Fun Game</td>
+                        </tr>
+                        <tr class="bg-brand-light/30 border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">10.50 - 11.05</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Bingkisan dan kenang-kenangan</td>
+                        </tr>
+                        <tr class="bg-white border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">11.05 - 11.20</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Foto bersama</td>
+                        </tr>
+                        <tr class="bg-brand-light/30 border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">11.20 - 11.30</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Penutupan</td>
+                        </tr>
+                        <tr class="bg-white border-b border-gray-100 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">11.30 - 12.30</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Ishoma</td>
+                        </tr>
+                        <tr class="bg-brand-light/30 hover:bg-brand-gold/5 transition-colors">
+                            <td class="py-2.5 px-4 text-brand-sage font-medium whitespace-nowrap">12.30 - Selesai</td>
+                            <td class="py-2.5 px-4 text-brand-dark">Temu kangen, ramah tamah dan diskusi</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Countdown Section -->
+        <section class="py-12 px-4 bg-brand-dark text-brand-gold relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+            
+            <div class="max-w-4xl mx-auto text-center relative z-10 fade-in-up">
+                <h2 class="font-serif text-xl md:text-2xl mb-8 text-brand-light">Menuju Hari Bahagia</h2>
+                
+                <div class="flex flex-wrap justify-center gap-3 md:gap-6" id="countdown">
+                    <!-- Boxes will be generated by JS -->
+                </div>
+                
+                <div id="countdown-message" class="hidden mt-6 font-serif text-lg text-brand-light">
+                    Acara Sedang Berlangsung / Telah Terlewat
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Closing -->
+        <footer class="bg-brand-dark text-brand-light py-12 px-4 text-center relative border-t-[6px] border-brand-gold">
+            <div class="max-w-2xl mx-auto fade-in-up">
+                <p class="font-sans text-sm text-brand-light/80 mb-6 leading-relaxed px-2">
+                    Besar harapan kami teman-teman alumni bisa hadir dan meramaikan acara ini. Atas perhatiannya kami ucapkan <span class="italic text-brand-gold">Jazakumullah Khoiron Katsiron</span>.
+                </p>
+                
+                <p class="font-serif italic text-lg md:text-xl mb-10 text-brand-gold">
+                    Wassalamu'alaikum Warahmatullahi Wabarakatuh.
+                </p>
+                
+                <div class="section-divider opacity-50 mb-8"></div>
+                
+                <!-- Signatures -->
+                <div class="grid grid-cols-2 gap-4 mb-8 text-sm md:text-base">
+                    <div>
+                        <p class="font-sans text-brand-sage mb-4 text-xs tracking-wider uppercase">Sekretaris</p>
+                        <p class="font-serif text-brand-light">Ustadzah Alda Nur Kholifah</p>
+                    </div>
+                    <div>
+                        <p class="font-sans text-brand-sage mb-4 text-xs tracking-wider uppercase">Ketua Panitia</p>
+                        <p class="font-serif text-brand-light">Ustadzah Raida</p>
+                    </div>
+                </div>
+                <div class="mt-2 text-sm md:text-base mb-8">
+                    <p class="font-sans text-brand-sage mb-4 text-xs tracking-wider uppercase">Mengetahui,<br>Mudir Umum</p>
+                    <p class="font-serif text-brand-light text-lg">Ustadz Aly Maskun, S.Pd.I</p>
+                </div>
+
+                <!-- Small ornament -->
+                <div class="flex justify-center items-center gap-2 opacity-50 mt-4">
+                    <div class="w-1.5 h-1.5 bg-brand-gold transform rotate-45"></div>
+                    <div class="w-8 h-px bg-brand-gold"></div>
+                    <div class="w-1.5 h-1.5 bg-brand-gold transform rotate-45"></div>
+                </div>
+            </div>
+            
+            <p class="mt-12 text-[10px] font-sans text-brand-light/30">
+                &copy; 2026 PP Baitul Qur'an Slogohimo. All rights reserved.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. Opening Logic ---
+        const btnOpen = document.getElementById('btn-open');
+        const coverCard = document.getElementById('cover-card');
+        const openingScreen = document.getElementById('opening-screen');
+        const mainContent = document.getElementById('main-content');
+
+        btnOpen.addEventListener('click', () => {
+            // Lock button state
+            btnOpen.style.pointerEvents = 'none';
+            btnOpen.innerHTML = '<span class="relative z-10 flex items-center justify-center gap-2"><i class="fas fa-spinner fa-spin"></i> Membuka...</span>';
+            btnOpen.classList.remove('animate-bounce');
+
+            // Phase 1: Card scales up slightly and fades out
+            coverCard.style.transform = 'scale(1.1) translateY(-10px)';
+            coverCard.style.opacity = '0';
+
+            // Phase 2: Fade out the entire dark screen
+            setTimeout(() => {
+                openingScreen.style.opacity = '0';
+                
+                // Show main content early so it's ready behind the fade
+                mainContent.style.display = 'block';
+                
+                setTimeout(() => {
+                    openingScreen.style.display = 'none'; // Hide physically
+                    mainContent.style.opacity = '1';      // Fade in main content
+                    initScrollAnimations();               // Trigger scroll animations
+                }, 800); // Sync with screen fade
+            }, 600); // Wait for card fade
+        });
+
+        // --- 2. Countdown Logic ---
+        // Target Date: 06 December 2026, 08:00:00 WIB (UTC+7)
+        const targetDate = new Date("2026-12-06T08:00:00+07:00").getTime();
+        const countdownContainer = document.getElementById('countdown');
+        const countdownMsg = document.getElementById('countdown-message');
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                countdownContainer.style.display = 'none';
+                countdownMsg.classList.remove('hidden');
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            renderCountdown(days, hours, minutes, seconds);
+        }
+
+        function renderCountdown(d, h, m, s) {
+            const timeUnits = [
+                { value: d, label: 'Hari' },
+                { value: h, label: 'Jam' },
+                { value: m, label: 'Menit' },
+                { value: s, label: 'Detik' }
+            ];
+
+            let html = '';
+            timeUnits.forEach(unit => {
+                const displayValue = unit.value < 10 ? `0${unit.value}` : unit.value;
+                html += `
+                    <div class="flex flex-col items-center justify-center w-16 h-20 md:w-20 md:h-24 bg-brand-light rounded-lg border border-brand-gold/30 shadow-md">
+                        <span class="font-serif text-2xl md:text-3xl text-brand-dark font-bold">${displayValue}</span>
+                        <span class="font-sans text-[10px] md:text-xs text-brand-sage uppercase tracking-wider mt-1">${unit.label}</span>
+                    </div>
+                `;
+            });
+            countdownContainer.innerHTML = html;
+        }
+
+        // Initial call and interval setup
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // --- 3. Scroll Animations & Progress Bar & Back to Top ---
+        function initScrollAnimations() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    
+                    if (entry.isIntersecting) {
+                        if (!prefersReducedMotion) {
+                            entry.target.classList.add('visible');
+                        } else {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'none';
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up, .fade-in-scale').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        const progressBar = document.getElementById('progress-bar');
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (openingScreen.style.visibility !== 'hidden') return;
+
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+
+            if (winScroll > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'translate-y-10');
+                backToTopBtn.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'translate-y-10');
+                backToTopBtn.classList.remove('opacity-100', 'translate-y-0');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
+```
